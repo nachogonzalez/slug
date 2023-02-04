@@ -4,6 +4,8 @@ Systems Leaker with User Gratitude
 ## What is SluG
 
 ## Architecture
+- Control center
+- Agent
 
 ## Functional requirements
 - Start contact with the server
