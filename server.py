@@ -1,27 +1,38 @@
-# server code
 import socket
+import keyboard
+from loguru import logger
 
-# create server socket
-server_socket = socket.socket()
 
-# bind server socket to localhost and port
-server_socket.bind(('localhost', 8000))
 
-# listen to incoming clients
-server_socket.listen(1)
+# Creation of a TCP/IP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# accept connection from client
-client_socket, address = server_socket.accept()
+# Link to a particular address and port
+server_address = ('localhost', 10000)
+logger.info('Starting server on port {} {}'.format(*server_address))
+sock.bind(server_address)
 
-# receive message from client
-message = client_socket.recv(1024)
+# Listening incoming connections
+sock.listen(1)
 
-# process message
-print(f"Received message from {address}: {message.decode()}")
+while True:
+    # Waiting for a connection
+    logger.info('Waiting for a connection')
+    connection, client_address = sock.accept()
+    try:
+        logger.info('Connection from', client_address)
 
-# send message to client
-response = "Thank you for your message"
-client_socket.send(response.encode())
-
-# close connection
-client_socket.close()
+        # We receive data on packages and reassemble them
+        while True:
+            data = connection.recv(16)
+            logger.info('Received {!r}'.format(data))
+            if data:
+                logger.info('Sending data back to the client')
+                connection.sendall(data)
+            else:
+                logger.info('No more data', client_address)
+                break
+            
+    finally:
+        # Closing connection
+        connection.close()
