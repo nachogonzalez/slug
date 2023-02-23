@@ -34,8 +34,20 @@ Systems Leaker with User Gratitude
 - Start contact with the server
 - Encrypt a set of files in different directories depending on the OS
   - Windows
+    - System32: C:\Windows\System32
+    - Program Files: C:\Program Files
+    - Users: C:\Users
+    - Temp: C:\Windows\Temp
   - Linux
+    - /bin: /bin
+    - /etc: /etc
+    - /home: /home
+    - /tmp: /tmp
   - Mac
+    - /Applications: /Applications
+    - /Library: /Library
+    - ~/Documents: ~/Documents
+    - ~/Downloads: ~/Downloads
 - Provide information about the encryption process to the server
 - Monitoring and alerting processes
 - Payment message
