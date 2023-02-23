@@ -27,8 +27,8 @@ Systems Leaker with User Gratitude
 ## Data model
 - Agent
   - id
-  - geoinfo
-  - filesnumber
+  - geoInfo
+  - filesNumber
 
 ## Functional requirements
 - Start contact with the server
